@@ -478,7 +478,7 @@ which should set up the outgoing connection.
 The environment variables
 .Ev NAME ,
 .Ev NODE ,
-.Ev REMOTEADDRES
+.Ev REMOTEADDRESS
 and
 .Ev REMOTEPORT
 are available.

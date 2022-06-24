@@ -1226,7 +1226,7 @@ Connects to the proxy and sends a HTTP CONNECT request.
 @cindex exec
 @item exec <@var{command}>
 Executes the given command which should set up the outgoing connection.
-The environment variables @env{NAME}, @env{NODE}, @env{REMOTEADDRES} and @env{REMOTEPORT} are available.
+The environment variables @env{NAME}, @env{NODE}, @env{REMOTEADDRESS} and @env{REMOTEPORT} are available.
 @end table
 
 @cindex ReplayWindow

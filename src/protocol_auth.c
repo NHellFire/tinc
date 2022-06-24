@@ -62,7 +62,7 @@ static bool send_proxyrequest(connection_t *c) {
 		char *port;
 
 		sockaddr2str(&c->address, &host, &port);
-		send_request(c, "CONNECT %s:%s HTTP/1.1\r\n\r", host, port);
+		send_request(c, "CONNECT %s:%s HTTP/1.1\r\n\r", proxyresolve ? c->hostname : host, port);
 		free(host);
 		free(port);
 		return true;

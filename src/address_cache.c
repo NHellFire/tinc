@@ -174,6 +174,14 @@ const sockaddr_t *get_recent_address(address_cache_t *cache) {
 			free_known_addresses(cache->ai);
 		}
 
+		// Set address to an invalid IP for use with SOCKS4A
+		// Ref: https://www.openssh.com/txt/socks4a.protocol
+		// This will be ignored by the proxy server and prevents
+		// leaking hostnames via DNS lookup attempts
+		if(proxyresolve) {
+			cache->node->hostname = xstrdup(address);
+			address = xstrdup("0.0.0.1");
+		}
 		cache->aip = cache->ai = str2addrinfo(address, port, SOCK_STREAM);
 
 		if(cache->ai) {

@@ -76,9 +76,18 @@ static bool send_proxyrequest(connection_t *c) {
 		return c->tcplen ? send_meta(c, req, reqlen) : false;
 	}
 
-	case PROXY_SOCKS4A:
-		logger(DEBUG_ALWAYS, LOG_ERR, "Proxy type not implemented yet");
-		return false;
+	case PROXY_SOCKS4A: {
+		size_t reqlen = socks_req_len(proxytype, &c->address);
+		size_t hostnamelen = strlen(c->hostname) + 1;
+		uint8_t *req = alloca(reqlen + hostnamelen);
+		memcpy(req + reqlen, c->hostname, hostnamelen);
+		c->tcplen = create_socks_req(proxytype, req, &c->address);
+		if (!c->tcplen) {
+			return false;
+		}
+		c->tcplen += hostnamelen;
+		return send_meta(c, req, reqlen + hostnamelen);
+	}
 
 	case PROXY_EXEC:
 		return true;

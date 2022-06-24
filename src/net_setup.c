@@ -274,8 +274,12 @@ bool setup_myself_reloadable(void) {
 			proxytype = PROXY_NONE;
 		} else if(!strcasecmp(proxy, "socks4")) {
 			proxytype = PROXY_SOCKS4;
+			if(proxyresolve) {
+				proxytype = PROXY_SOCKS4A;
+			}
 		} else if(!strcasecmp(proxy, "socks4a")) {
 			proxytype = PROXY_SOCKS4A;
+			proxyresolve = true;
 		} else if(!strcasecmp(proxy, "socks5")) {
 			proxytype = PROXY_SOCKS5;
 		} else if(!strcasecmp(proxy, "http")) {

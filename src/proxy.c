@@ -239,7 +239,7 @@ static size_t create_socks5_req(void *buf, const sockaddr_t *sa) {
 size_t socks_req_len(proxytype_t type, const sockaddr_t *sa) {
 	uint16_t family = sa->sa.sa_family;
 
-	if(type == PROXY_SOCKS4) {
+	if(type == PROXY_SOCKS4 || type == PROXY_SOCKS4A) {
 		if(family != AF_INET) {
 			logger(DEBUG_CONNECTIONS, LOG_ERR, "SOCKS 4 only supports IPv4 addresses");
 			return 0;
@@ -275,7 +275,7 @@ size_t socks_req_len(proxytype_t type, const sockaddr_t *sa) {
 }
 
 size_t create_socks_req(proxytype_t type, void *buf, const sockaddr_t *sa) {
-	if(type == PROXY_SOCKS4) {
+	if(type == PROXY_SOCKS4 || type == PROXY_SOCKS4A) {
 		return create_socks4_req(buf, sa);
 	} else if(type == PROXY_SOCKS5) {
 		return create_socks5_req(buf, sa);

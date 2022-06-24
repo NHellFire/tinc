@@ -1229,6 +1229,12 @@ Executes the given command which should set up the outgoing connection.
 The environment variables @env{NAME}, @env{NODE}, @env{REMOTEADDRESS} and @env{REMOTEPORT} are available.
 @end table
 
+@cindex ProxyResolve
+@item ProxyResolve = <yes|no> (no)
+Enables hostname lookups via @var{Proxy}.
+
+This does not affect the @var{Hostnames} option, only node connections.
+
 @cindex ReplayWindow
 @item ReplayWindow = <bytes> (32)
 This is the size of the replay tracking window for each remote node, in bytes.

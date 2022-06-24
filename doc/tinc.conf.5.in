@@ -483,6 +483,14 @@ and
 .Ev REMOTEPORT
 are available.
 .El
+.It Va ProxyResolve Li = yes | no Pq no
+Enables hostname lookups via
+.Ar Proxy
+.
+.Pp
+This does not affect the
+.Ar Hostnames
+option, only node connections.
 .It Va ReplayWindow Li = Ar bytes Pq 32
 This is the size of the replay tracking window for each remote node, in bytes.
 The window is a bitfield which tracks 1 packet per bit, so for example

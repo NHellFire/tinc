@@ -168,6 +168,7 @@ extern char *proxyhost;
 extern char *proxyport;
 extern char *proxyuser;
 extern char *proxypass;
+extern bool proxyresolve;
 typedef enum proxytype_t {
 	PROXY_NONE = 0,
 	PROXY_SOCKS4,

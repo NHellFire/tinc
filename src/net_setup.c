@@ -60,6 +60,7 @@ char *proxyhost = NULL;
 char *proxyport = NULL;
 char *proxyuser = NULL;
 char *proxypass = NULL;
+bool proxyresolve;
 
 proxytype_t proxytype;
 bool autoconnect;
@@ -261,6 +262,8 @@ bool setup_myself_reloadable(void) {
 	get_config_string(lookup_config(&config_tree, "Proxy"), &proxy);
 
 	if(proxy) {
+		get_config_bool(lookup_config(&config_tree, "ProxyResolve"), &proxyresolve);
+
 		char *space;
 
 		if((space = strchr(proxy, ' '))) {

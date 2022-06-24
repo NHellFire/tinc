@@ -1706,6 +1706,7 @@ const var_t variables[] = {
 	{"PrivateKeyFile", VAR_SERVER},
 	{"ProcessPriority", VAR_SERVER},
 	{"Proxy", VAR_SERVER},
+	{"ProxyResolve", VAR_SERVER},
 	{"ReplayWindow", VAR_SERVER | VAR_SAFE},
 	{"Sandbox", VAR_SERVER},
 	{"ScriptsExtension", VAR_SERVER},

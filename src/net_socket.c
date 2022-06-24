@@ -454,7 +454,7 @@ static void do_outgoing_pipe(connection_t *c, const char *command) {
 	char *port = NULL;
 
 	sockaddr2str(&c->address, &host, &port);
-	setenv("REMOTEADDRESS", host, true);
+	setenv("REMOTEADDRESS", proxyresolve ? c->hostname : host, true);
 	setenv("REMOTEPORT", port, true);
 	setenv("NAME", myself->name, true);
 
@@ -578,7 +578,11 @@ begin:
 	connection_t *c = new_connection();
 	c->outgoing = outgoing;
 	memcpy(&c->address, sa, SALEN(sa->sa));
-	c->hostname = sockaddr2hostname(&c->address);
+	if(proxytype && proxyresolve) {
+		c->hostname = xstrdup(outgoing->node->hostname);
+	} else {
+		c->hostname = sockaddr2hostname(&c->address);
+	}
 
 	logger(DEBUG_CONNECTIONS, LOG_INFO, "Trying to connect to %s (%s)", outgoing->node->name, c->hostname);
 
